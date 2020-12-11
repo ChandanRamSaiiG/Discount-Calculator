@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>discountprice</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Discount Price</h1>
+    </header>
+    <table id="table">
+        <tr>
+        <td>Product Name</td>
+            <td><input type="text" name="name" id="name" required></td>
+        </tr>
+        <tr>
+        <td>Product Price</td>
+            <td><input type="number" name="price" id="price" min="15000" required></td>
+        </tr>
+        <tr>
+            <td>Season</td>
+                <td><select name="season" id="seasons" required>
+                    <option value="summer">SUMMER SALE</option>
+                    <option value="newyear">NEW YEAR SALE</option>
+                    <option value="clearance">CLEARANCE SALE</option>
+                </select>
+            </td>
+        </tr>
+        </table>
+        <br>
+        <div id="calc">
+        <button name="submit" value="GET DISCOUNT PRICE" onclick="Calculate_discount();">GET DISCOUNT PRICE</button></div>
+            
+    <div id="result"></div>
+        <div id="result1"></div>
+    <script>
+        function Calculate_discount(){
+            var pr = document.getElementById("price").value;
+            if(pr<15000){
+                alert('Please enter a value greater than 15000');
+            }
+            var seas = document.getElementById("seasons").value;
+            var discount_percent;
+            var dp;
+            var finalprice;
+            if(seas == "summer"){
+                discount_percent = 10;
+                dp = (discount_percent/100) * pr;
+            }
+            else if(seas == "newyear"){
+                discount_percent = 5;
+                dp = (discount_percent/100) * pr;
+            }
+            else if(seas == "clearance"){
+                discount_percent = 15;
+                dp = (discount_percent/100) * pr;
+            }
+            
+            finalprice = pr - dp;
+            document.getElementById("result").innerHTML = "The discount is "+discount_percent+"%";
+            document.getElementById("result1").innerHTML = "The discounted price is Rs."+finalprice;
+        }
+    </script>
+        
+    
+</body>
+</html>
